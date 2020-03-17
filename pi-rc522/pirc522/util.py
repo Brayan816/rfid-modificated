@@ -132,51 +132,17 @@ class RFIDUtil(object):
         if not error:
             (error, data) = self.rfid.read(block_address)
             print(self.sector_string(block_address) + ": " + str(data))
-            
+            c=""
             for x in range(0,16):
-                if x == 0:
-                   c=chr(data[x])
-                else:
-                    if x==1:
-                       c= c + chr(data[x])
-                    else:
-                       if x==3:
-                          c=c+chr(data[x])
-                       else:
-                            if x==4:
-                               c=c+chr(data[x])
-                            else:
-                                 if x==5:
-                                    c=c+chr(data[x])
-                                 else:
-                                      if x==6:
-                                        c=c+chr(data[x])
-                                      else:
-                                           if x==7:
-                                              c=c+chr(data[x])
-                                           else:
-                                                 if x==8:
-                                                    c=c+chr(data[x])
-                                                 else:
-                                                      if x==9:
-                                                         c=c+chr(data[x])
-                                                      else:
-                                                           if x==10:
-                                                              c=c+chr(data[x])
-                                                           else:
-                                                                if x==11:
-                                                                   c=c+chr(data[x])
-                                                                else:
-                                                                    if x==12:
-                                                                       c=c+chr(data[x])
-                                                                    else:
-                                                                        if x==13:
-                                                                           c=c+chr(data[x])
-                                                                        else:
-                                                                            if x==14:
-                                                                               c=c+chr(data[x])
-                                                                            else:
-                                                                                c=c+chr(data[x])
+                 if data[x]==0:
+                     data[x]=32
+                 c= c + chr(data[x])
+                 if x==15:
+                    Nombre=c
+                    return Nombre
+        else:
+            print("Error on " + self.sector_string(block_address))
+            return "0"
             print(c)
             
 
